@@ -15,3 +15,10 @@ export const resetLogin = () => {
         type: LOGIN_FAIL,
     }
 }
+
+export const signOut = signoutInfo => {
+    return {
+        type: SIGN_OUT,
+        payload: signoutInfo
+    }
+}

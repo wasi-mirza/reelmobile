@@ -1,8 +1,8 @@
-import {LOGIN, LOGIN_SUCCESS, LOGIN_FAIL} from '../actions'
+import {LOGIN, LOGIN_SUCCESS, LOGIN_FAIL, SIGN_OUT} from '../actions'
 
 const initialState = {
-    email: __DEV__?'neeraja':'',
-    password: __DEV__?'Test@123':'',
+    email: __DEV__?'':'',
+    password: __DEV__?'':'',
 
     // email: '',
     // password: '',
@@ -19,6 +19,10 @@ export default (state=initialState, action) => {
                 return {email, password, userInfo}
             }
             return {email: '', password: '', userInfo}
+        }
+        case SIGN_OUT: {
+            const {email, password} = action.payload
+            return {email, password}
         }
         case LOGIN_FAIL: {
             return {...initialState}

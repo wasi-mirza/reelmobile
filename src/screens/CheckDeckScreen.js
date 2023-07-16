@@ -266,8 +266,8 @@ export default ({route, navigation}) => {
                             </View>
                             {/* Back Side */}
                             <View style={{marginHorizontal: WIDTH(5), marginTop: HEIGHT(24)}}>
-                                <HTML baseFontStyle={{ color: '#909090',fontFamily: 'FuturaStd-Medium'}}
-                                      source={{html: currentQuestion[assignee].title}}/>
+                                {/* <HTML baseFontStyle={{ color: '#909090',fontFamily: 'FuturaStd-Medium'}}
+                                      source={{html: currentQuestion[assignee].title}}/> */}
                                       <HTML baseFontStyle={{ color: 'black',fontFamily: 'FuturaStd-Medium'}}
                                         source={{html: currentQuestion[assignee].answer}}/>
                                   <Text style={{fontSize: WIDTH(23), fontFamily: 'FuturaStd-Medium', marginBottom: HEIGHT(15),marginTop: HEIGHT(15)}}>Select Accuracy Level</Text>

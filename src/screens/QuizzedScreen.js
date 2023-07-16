@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import { View, RefreshControl, StatusBar, TouchableOpacity, Image, Text, FlatList } from 'react-native'
+import { View, RefreshControl, StatusBar, TouchableOpacity, Image, Text, FlatList, Alert } from 'react-native'
 import {Header, Badge} from 'react-native-elements'
 import Toast from 'react-native-toast-message'
 import {useSelector, useDispatch} from 'react-redux'
@@ -11,13 +11,16 @@ import { WIDTH, HEIGHT } from '../config/utils'
 import ActivityCell from '../components/ActivityCell'
 import {studentDashboardStats} from '../config/api'
 import {getAllQuizesStatus} from '../config/api'
-import {resetLogin} from '../redux/actions'
+import {resetLogin, signOut} from '../redux/actions'
 import {initiateQuiz} from '../config/api'
 
 export default ({navigation}) => {
     const [activities, setActivities] = useState([])
     const [refresh,setRefresh]= useState(false)
     const [page,setPage]= useState(0)
+
+    const [email] = useState(useSelector(state => state.userReducer.email))
+    const [password] = useState(useSelector(state => state.userReducer.password))
 
     const[array,setArray]= useState([
         {id: 1, value: "a string",},
@@ -141,6 +144,17 @@ export default ({navigation}) => {
         }
 
     }
+    const logoutUser = () => {
+        Alert.alert('Logout', 'Do you really want to logout?', [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+            {text: 'OK', onPress: () => dispatch(signOut({email, password}))},
+          ]);
+
+    }
     const handleRefresh = () => {
         if (userInfo) {
             loadActivities()
@@ -177,7 +191,7 @@ export default ({navigation}) => {
                 leftContainerStyle={{marginLeft: WIDTH(10)}}
                 rightComponent={
                     <View style={{alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-end', width: 150}}>
-                        <Text style={gstyles.headerRightLabel} numberOfLines={1}>User</Text>
+                        <Text style={gstyles.headerRightLabel} numberOfLines={1} onPress= {()=>logoutUser()}>User</Text>
                         <View style={{marginLeft: WIDTH(17)}}>
                             <Image
                                 source={require('../assets/photo-pic.png')}

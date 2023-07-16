@@ -2,8 +2,8 @@ import {NetworkInfo} from 'react-native-network-info'
 
 import store from '../redux/store'
 
-// const baseUrl = 'http://apimvp.reel-lms.com/'
-const baseUrl = 'https://neoapi.reel-lms.com/'
+const baseUrl = 'https://apimvp.reel-lms.com/'
+// const baseUrl = 'https://neoapi.reel-lms.com/'
 
 // https://neoapi.reel-lms.com/
 const loginUrl = baseUrl+'login'
